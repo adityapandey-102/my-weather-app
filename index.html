@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body style="background: #1f1d1d;color: white;">
+
+
+  <!-- NavBar------- -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><strong>My Weather App</strong></a>
+      <button class="btn btn-outline-success rounded-pill" id="currentLocationbtn">Current Location</button>
+    </div>
+  </nav>
+  <!-- NavBar------- -->
+
+
+  <div id="SpinnerBox" style="display: none;">
+    <div id="SpinnerBoxdiv" class="rounded-4 card" data-bs-theme="dark">
+      <u>
+        <h3 id="Message">Kindly wait until we load the content</h3>
+      </u>
+      <img class="spinnerImg" src="/images/1477 - Copy.gif" alt="spinner">
+    </div>
+  </div>
+  <div id="dataBox" style="display: block;">
+
+
+    <!-- Search Box---------- -->
+    <div class="container d-flex justify-content-center" id="onleave" data-bs-theme="dark">
+      <form class="d-flex my-5 w-100" role="search">
+        <input id="city" class="form-control me-2 rounded-pill" style="min-height: 50px;" type="search"
+          placeholder="Search" aria-label="Search" value="" autocomplete="off">
+        <button class="btn btn-dark rounded-pill btn-sm align-self-center"
+          style="width: 45px;height: 45px;padding: 3px;" type="submit" id="submit"><img src="/images/search_icon.svg"
+            alt="search-icon" style="height: 30px; width: 30px;"></button>
+      </form>
+      <div id="searchBox" class="container rounded-4">
+        <ul class="my-4" id="searchUl">
+        </ul>
+      </div>
+    </div>
+    <h1 style="text-align: center;"><strong>Weather of <span class="cityName"></span></strong></h1>
+    <!--Search Box ------- -->
+
+    <!-- cards for weather -->
+    <div class="mx-lg-5" data-bs-theme="dark">
+
+
+      <!-- Upper Portion----- -->
+      <div class="row" style="justify-content: center;">
+
+        <!-- Temprature Card------ -->
+        <div class="col my-3 mx-3" style="max-width:350px; padding-left: 0px; padding-right: 0px;">
+          <div class="card rounded-3 shadow-sm" style="width: 349px;">
+            <div class="container">
+              <h4 class="my-2"><strong>Temprature</strong></h4>
+            </div>
+            <div class="card-body">
+              <div class="card-title pricing-card-title" style="font-size:80px"><span
+                  id="mytemp"></span>&deg;<sup>c</sup><span id="weatherImage" class="mx-3"
+                  style="height: 85px; width:auto;"></span></div>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><span id="weather"></span></li>
+                <hr>
+                <li><img src="/images/icons8-calendar-64.png" alt="" style="height: 20px;width: 20px;"> <span
+                    id="date"></span></li>
+                <li><img src="/images/icons8-location-50.png" alt="" style="height: 20px;width: 20px;"> <span
+                    class="cityName"></span>,<span id="countryCode"></span></li>
+                <hr>
+                <li><img src="/images/icons8-windsock-50.png" alt="" style="height: 20px;width: 20px;"> Wind Speed: <span
+                  id="windSpeed"></span> kmph</span></li>
+                  <hr>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Temprature Card------ -->
+
+        <!-- Todays Highlights Card------ -->
+        <div class="col my-3 mx-3">
+          <div class="card rounded-3 shadow-sm">
+            <div class="container">
+              <h5 class="my-2"><strong>Todays Highlights</strong></h5>
+            </div>
+            <div class="card-body">
+              <div class="row mx-2" style="justify-content: center;">
+                <div class="rounded-3 col my-2 " style="border: 1px solid white;min-width:310px;">
+                  <div class="header my-3"><span>Air Quality Index</span> <span class="mx-4">
+                      <button class="btn-sm btn rounded-pill" id="IndexBtn" disabled="true">Good</button>
+                    </span></div>
+                  <div style="justify-content: center;">
+                    <img class="d-inline-block mx-2 mb-3" src="/images/icons8-wind-50.png" alt=""
+                      style="height: 55px;width: 55px;">
+                    <div class="d-inline-block mx-2"><span>PM25</span>
+                      <h3 id="pm25"></h3>
+                    </div>
+                    <div class="d-inline-block mx-2"><span>SO2</span>
+                      <h3 id="so2"></h3>
+                    </div>
+                    <div class="d-inline-block mx-2"><span>NO2</span>
+                      <h3 id="no2"></h3>
+                    </div>
+                    <div class="d-inline-block mx-2"><span>O3</span>
+                      <h3 id="o3"></h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="rounded-3 col-lg-10 col-xl-6 my-2 mx-3" style="border: 1px solid white;width: auto;">
+                  <!--Sunrise and Sunset Box-->
+                  <div class="header justify-content-center my-3"><span>Sunrise & Sunset</span></div>
+                  <div class="justify-content-center d-flex">
+                    <div style="display: inline;">
+                      <span id="sunriseImage"></span>
+                      <span>
+                        <div class="d-inline-block mx-2">
+                          <span>Sunrise</span>
+                          <h3 id="sunrise"></h3>
+                        </div>
+                      </span>
+                    </div>
+
+                    <div style="display: inline;">
+                      <span id="sunsetImage"></span>
+                      <span>
+                        <div class="d-inline-block mx-2">
+                          <span>Sunset</span>
+                          <h3 id="sunset"></h3>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="container row" style="text-align: center;">
+                  <div class="rounded-3 col my-2 mx-3 " style="border: 1px solid white;width: auto;"> <!--Humidity-->
+                    <div class="header justify-content-center my-3"><span>Humidity</span> </div>
+                    <div class="">
+                      <img class="d-inline-block mx-2 mb-2" src="/images/icons8-humidity-64.png" alt=""
+                        style="height: 55px;width: 55px;">
+                      <div class="d-inline-block mx-2">
+                        <h3 class="d-inline-block" id="humidity"></h3><strong style="font-size: 20px;">%</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rounded-3 col my-2 mx-3 " style="border: 1px solid white;width: auto;"> <!--Presure-->
+                    <div class="header justify-content-center my-3"><span>Pressure</span> </div>
+                    <div class="justify-content-center">
+                      <img class="d-inline-block mx-1 mb-2" src="/images/icons8-air-48.png" alt=""
+                        style="height: 55px;width: 55px;">
+                      <div class="d-inline-block mx-1">
+                        <h3 class="d-inline-block" id="pressure"></h3><strong style="font-size: 20px;">hPa</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rounded-3 col my-2 mx-3 " style="border: 1px solid white;width: auto;"> <!--Visibility-->
+                    <div class="header justify-content-center my-3"><span>Visibility</span> </div>
+                    <div class="justify-content-center">
+                      <img class="d-inline-block mx-2 mb-2" src="/images/icons8-eye-48.png" alt=""
+                        style="height: 55px;width: 55px;">
+                      <div class="d-inline-block mx-2">
+                        <h3 class="d-inline-block" id="visibility"></h3><strong style="font-size: 20px;">km</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rounded-3 col my-2 mx-3 " style="border: 1px solid white;width: auto;"> <!--Feels Like-->
+                    <div class="header justify-content-center my-3"><span>Feels Like</span> </div>
+                    <div class="justify-content-center">
+                      <img class="d-inline-block mx-2 mb-2" src="/images/icons8-temperature-50.png" alt=""
+                        style="height: 55px;width: 55px;">
+                      <div class="d-inline-block mx-1">
+                        <h3 class="d-inline-block" id="feels_like"></h3><strong><sup><span
+                              style="font-size: 20px;">&deg;c</sup></span></strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Todays Highlights Card------ -->
+
+      </div>
+      <!-- Upper Portion----- -->
+
+
+      <!-- Lower Portion----- -->
+      <div class="row" style="justify-content: center;">
+
+        <!-- 5 Day Forecast Card------ -->
+        <div class="col my-3 mx-3" style="max-width:350px; padding-left: 0px; padding-right: 0px;">
+          <h4><strong>5 Days Forecast</strong></h4>
+          <div class="card rounded-3 shadow-sm" style="width: 349px;">
+            <div class="card-body">
+              <ul class="list-unstyled mt-3 mb-4" id="forecastCard">
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- 5 Day Forecast Card------ -->
+
+        <!-- Todays at Card------ -->
+        <div class="col my-3 mx-3">
+          <h4><strong>Today at</strong></h4>
+          <div class="card rounded-3 shadow-sm" style=" overflow-x: auto; height: 324px;">
+            <div class="card-body">
+              <div class="container row" id="todaysAtCard" style="justify-content: center;">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Todays at Card------ -->
+
+      </div>
+      <!-- Lower Portion----- -->
+
+
+    </div>
+    <!-- cards for weather -->
+
+
+
+
+    <hr>
+    <footer class="container" style="text-align: center; height: 150px;" data-bs-theme="dark">
+      <p>This App Build for <a href="https://github.com/adityapandey-102">Weather Research</a> by <a
+          href="https://www.linkedin.com/in/aditya-pandey-0661881ba/">@Aditya Pandey</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+  </div>
+
+
+
+
+
+  <script src="/app.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
