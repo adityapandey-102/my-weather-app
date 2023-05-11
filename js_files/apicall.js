@@ -8,7 +8,6 @@ export const getWeather= async(lat,lon)=>{
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apikey}`;
         const response = await fetch(url);
         const result = await response.json();
-        console.log(result)
         return result;
        
         
@@ -21,7 +20,7 @@ export const getWeather= async(lat,lon)=>{
 
 export const getCityName=async(city)=>{
     try {
-        const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apikey}`;
+        const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apikey}`;
         const response = await fetch(url);
         const result = await response.json();
         const code={
@@ -39,7 +38,7 @@ export const getCityName=async(city)=>{
 
 export const getCityNames=async(city)=>{
     try {
-        const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=27e1a68599132aa3a4ad780f1d94183a`;
+        const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=27e1a68599132aa3a4ad780f1d94183a`;
         const response = await fetch(url);
         const result = await response.json();
         return result;
@@ -53,7 +52,7 @@ export const getCityNames=async(city)=>{
 
 export const getAirQuality=async(lat,lon)=>{
     try {
-        const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apikey}`;
+        const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apikey}`;
         const response = await fetch(url);
         const result = await response.json();
         return result;

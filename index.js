@@ -24,12 +24,12 @@ const currentLocationOps = async () => {
 
   await modules.currentLocation();
   setTimeout(() => {
-    if (!JSON.parse(localStorage.getItem("coordinates"))) {
+    if (!JSON.parse(sessionStorage.getItem("coordinates"))) {
       getRender({ lon: 77.2219, lat: 28.6517 })
+      render.showSpinner(true,"Ops! Seems like you didn't given the location permission");
       setTimeout(() => {
-        render.showSpinner(false,"Ops! Seems like you didn't given the location permission");
+        render.showSpinner(false,"");
       }, 4000);
-      // alert("Timeout for geoloaction, we are providing dummy location utill you allow for location permission")
     }
   }, 10000)
 
@@ -37,12 +37,12 @@ const currentLocationOps = async () => {
 }
 
 
-if (!localStorage.getItem("coordinates")) {
+if (!sessionStorage.getItem("coordinates")) {
   render.showSpinner(true,"Kindly Allow the location permission:");
   currentLocationOps();
 }
-else if (localStorage.getItem("coordinates")) {
-  getRender(JSON.parse(localStorage.getItem("coordinates")));
+else if (sessionStorage.getItem("coordinates")) {
+  getRender(JSON.parse(sessionStorage.getItem("coordinates")));
 }
 else {
   getRender({ lon: 77.2219, lat: 28.6517 });

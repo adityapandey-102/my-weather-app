@@ -16,7 +16,7 @@
 
 
   <!-- NavBar------- -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: fixed; width: 100%;z-index: 3;top: 0px;" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><strong>My Weather App</strong></a>
       <button class="btn btn-outline-success rounded-pill" id="currentLocationbtn">Current Location</button>
@@ -25,7 +25,7 @@
   <!-- NavBar------- -->
 
 
-  <div id="SpinnerBox" style="display: none;">
+  <div id="SpinnerBox" style="display: none; margin-top: 60px;">
     <div id="SpinnerBoxdiv" class="rounded-4 card" data-bs-theme="dark">
       <u>
         <h3 id="Message">Kindly wait until we load the content</h3>
@@ -33,11 +33,13 @@
       <img class="spinnerImg" src="/images/1477 - Copy.gif" alt="spinner">
     </div>
   </div>
-  <div id="dataBox" style="display: block;">
+
+
+  <div id="dataBox" style="display: block;margin-top: 60px;">
 
 
     <!-- Search Box---------- -->
-    <div class="container d-flex justify-content-center" id="onleave" data-bs-theme="dark">
+    <div class="container d-flex justify-content-center" id="onleave" data-bs-theme="dark" >
       <form class="d-flex my-5 w-100" role="search">
         <input id="city" class="form-control me-2 rounded-pill" style="min-height: 50px;" type="search"
           placeholder="Search" aria-label="Search" value="" autocomplete="off">
@@ -50,7 +52,7 @@
         </ul>
       </div>
     </div>
-    <h1 style="text-align: center;"><strong>Weather of <span class="cityName"></span></strong></h1>
+    <h1 style="text-align: center;"><strong>Weather of <span class="cityName"></span></strong> <img src="/images/icons8-location-50.png" alt="" style="height: 40px;width:40px;" class="mb-3"></h1>
     <!--Search Box ------- -->
 
     <!-- cards for weather -->
@@ -70,17 +72,17 @@
               <div class="card-title pricing-card-title" style="font-size:80px"><span
                   id="mytemp"></span>&deg;<sup>c</sup><span id="weatherImage" class="mx-3"
                   style="height: 85px; width:auto;"></span></div>
-              <ul class="list-unstyled mt-3 mb-4">
+              <ul class="list-unstyled mt-3">
                 <li><span id="weather"></span></li>
                 <hr>
                 <li><img src="/images/icons8-calendar-64.png" alt="" style="height: 20px;width: 20px;"> <span
                     id="date"></span></li>
                 <li><img src="/images/icons8-location-50.png" alt="" style="height: 20px;width: 20px;"> <span
                     class="cityName"></span>,<span id="countryCode"></span></li>
-                <hr>
-                <li><img src="/images/icons8-windsock-50.png" alt="" style="height: 20px;width: 20px;"> Wind Speed: <span
-                  id="windSpeed"></span> kmph</span></li>
-                  <hr>
+                <hr class="mb-3">
+                <li><img src="/images/icons8-windsock-50.png" alt="" style="height: 20px;width: 20px;"> Wind Speed: <span class="rounded-3 mx-2 p-1" style="border: 2px solid #09462a;"><span
+                  id="windSpeed"></span> km/h</span></li>
+                  <hr class="mt-3">
               </ul>
             </div>
           </div>

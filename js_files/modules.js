@@ -144,10 +144,11 @@ export const currentLocation = () => {
 
 const showPosition = (position) => {
     const currentLocationcode = { lat: position.coords.latitude, lon: position.coords.longitude }
-    localStorage.setItem("coordinates", JSON.stringify(currentLocationcode));
+    sessionStorage.setItem("coordinates", JSON.stringify(currentLocationcode));
     getRender(currentLocationcode);
+    showSpinner(true,"Kudos! We get the permission, your screen will update soon:");
     setTimeout(() => {
-        showSpinner(false,"Kudos! We get the permission, your screen will update soon:");
+        showSpinner(false,"");
 
     }, 4000);
 

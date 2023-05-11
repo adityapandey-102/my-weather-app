@@ -20,7 +20,6 @@ export const todaysHighlightCard = async (currentWeather, geoCode) => {
     so2.innerHTML = air_quality_data.list[0].components.so2;
     no2.innerHTML = air_quality_data.list[0].components.no2;
     o3.innerHTML = air_quality_data.list[0].components.o3;
-    console.log(air_quality_data)
     const IndexBtnName = [
         { index: "Good", btnColour: "success" },
         { index: "Fair", btnColour: "success" },
