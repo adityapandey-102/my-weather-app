@@ -1,5 +1,5 @@
 import { AnimatedWeatherIcon } from "animated-weather-icon"
-import { getRender } from "../app";
+import { getRender } from "..";
 import { showSpinner } from "./renderFunctions";
 
 
